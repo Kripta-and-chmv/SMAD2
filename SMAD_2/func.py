@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import sympy as sp
 import numpy as np
 import math
-
+import scipy.stats as st
 
 def func_2(x):
     return x
@@ -43,12 +43,22 @@ def parameter_estimation_sigma_2(est_e, N):
     return est_sigma_2
 
 def check_adequacy_of_the_model(sigma, est_sigma_2):
-    Ft = 1.8117
+    Ft = 1.5705
     F = est_sigma_2 / sigma ** 2
+    ##########
+    #тест Фишера
+    #alpha = 0.05
+    #p_value = st.f.cdf(F, 21, float('Inf'))
+    #if p_value > alpha:
+    #    return False
+    #else:
+    #    return True
+        
     if Ft >= F:
         return True
     else:
         return False
+
 #################################
 def Func(X, Y):
     return 1 + X - sp.exp(-X ** 2) + Y ** 2
