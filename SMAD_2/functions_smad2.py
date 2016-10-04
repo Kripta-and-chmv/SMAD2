@@ -55,9 +55,9 @@ def check_adequacy_of_the_model(sigma, est_sigma_2):
     #    return True
         
     if Ft >= F:
-        return True
+        return True, F, Ft
     else:
-        return False
+        return False, F, Ft
 
 def get_x1_x2(fname):
     str_file = []
@@ -92,3 +92,20 @@ def get_sigma(fname):
             str_file.append(line)
     sigma = float(str_file[1].expandtabs(1).rstrip())
     return sigma
+	
+def write_in_file(y, est_y, est_e, sigma, est_sigma, est_tetta, F, Ft):
+	with open('y.txt', 'w') as f:
+		f.write('y:\t\t\test_y:\t\t\ty - est_y:\n')
+		for i in range(len(est_y)):
+			f.write(str(y[i]) + '\t\t\t' + str(est_y[i]) + '\t\t\t' + str(est_e[i]) + '\n')
+	
+	with open('tetta.txt', 'w') as f:
+		tetta = [1, 1, -1, 1]
+		f.write('tetta:\t\t\test_tetta:\n')
+		for i in range(len(est_tetta)):
+			f.write(str(tetta[i]) + '\t\t\t' + str(est_tetta[i]) + '\n')
+	with open('sigma and F.txt', 'w') as f:
+		f.write('sigma:\t' + str(sigma) + '\n')
+		f.write('est_sigma:\t' + str(est_sigma)+ '\n')
+		f.write('F:\t' + str(F) + ' \n')
+		f.write('Ft:\t' + str(Ft) + '\n')
