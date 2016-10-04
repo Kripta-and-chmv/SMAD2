@@ -46,7 +46,7 @@ def check_adequacy_of_the_model(sigma, est_sigma_2):
     Ft = 1.5705
     F = est_sigma_2 / sigma ** 2
     ##########
-    #тест Фишера
+    #пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     #alpha = 0.05
     #p_value = st.f.cdf(F, 21, float('Inf'))
     #if p_value > alpha:
@@ -59,51 +59,36 @@ def check_adequacy_of_the_model(sigma, est_sigma_2):
     else:
         return False
 
-#################################
-def Func(X, Y):
-    return 1 + X - sp.exp(-X ** 2) + Y ** 2
+def get_x1_x2(fname):
+    str_file = []
+    x1 = []
+    x2 = []
+    with open(fname, 'r') as f:
+        for line in f:
+            str_file.append(line)
+    for i in range(1, len(str_file)):
+        s = str_file[i].expandtabs(1).rstrip()
+        x1_el, x2_el = s.split('   ')
+        x1.append(float(x1_el))
+        x2.append(float(x2_el))
+    return x1, x2
 
-def FindMean(x, y, U):
-    N=len(x)
-    mean = .0
-    for i in range(N):
-        U[i] = Func(x[i], y[i])
-        mean += U[i]
-    mean = mean / N
-    return mean
+def get_y(fname):
+    str_file = []
+    y = []
+    with open(fname, 'r') as f:
+        for line in f:
+            str_file.append(line)
+    for i in range(1, len(str_file)):
+        s = str_file[i].expandtabs(1).rstrip()
+        u, y_el, ej = s.split('   ')
+        y.append(float(y_el))
+    return y
 
-def Graph(x, y):
-    p1 = plt.plot(x, y, 'ro')
-    plt.show()
-
-def WritingInFile(names, sequences, fileName):
-    with open(fileName, 'w') as f:
-        for i in range(len(names)):
-            f.write(names[i] + ':\n')
-            for j in range(len(sequences[i])):
-                f.write('\t' + str(sequences[i][j]) + '\n')
-
-def FindResponds(x1, x2, outputFile, N):
-    p = 0.08
-    w2 = .0
-    dispers = .0
-    U = np.zeros(N)
-    y = np.zeros(N)
-    tr = .0
-
-    mean = FindMean(x1, x2, U)
-    
-    for i in range(N):        
-        tr = U[i] - mean
-        w2 += tr ** 2
-
-    w2 = w2 / (N - 1)
-    dispers = math.sqrt(p * w2)
-    ej = np.random.normal(0, dispers, N)
-
-    for i in range(N):
-        y[i] = U[i] + ej[i]
-    
-    WritingInFile(['U', 'ej', 'y'], [U, ej, y], outputFile)
-
-    return y, dispers
+def get_sigma(fname):
+    str_file = []
+    with open(fname, 'r') as f:
+        for line in f:
+            str_file.append(line)
+    sigma = float(str_file[1].expandtabs(1).rstrip())
+    return sigma

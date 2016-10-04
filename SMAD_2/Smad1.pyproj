@@ -3,15 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>a62dbbb1-7320-45ce-a027-4d6cdce077d9</ProjectGuid>
+    <ProjectGuid>44a4f1bb-8c9d-4375-9ad9-e690e8581ccc</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>smad2_main.py</StartupFile>
+    <StartupFile>smad1.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>SMAD_2</Name>
-    <RootNamespace>SMAD_2</RootNamespace>
+    <Name>Smad1</Name>
+    <RootNamespace>Smad1</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,14 +22,23 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="smad2_main.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="functions_smad2.py" />
+    <Compile Include="functions_smad1.py" />
+    <Compile Include="smad1.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="u_y_ej_x1_x2.txt" />
-    <Content Include="x1x2.txt" />
+    <Content Include="output.txt" />
+    <Content Include="u_y_ej_0_x2.txt">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="u_y_ej_x1_0.txt">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="u_y_ej_x1_x2.txt">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="x1x2.txt">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
